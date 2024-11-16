@@ -7,7 +7,7 @@ import { GiPizzaSlice } from "react-icons/gi"
 const CardPizza = (props) => {
     console.log(props)
   return (
-    <div className=" max-w-md rounded-lg overflow-hidden shadow-lg bg-white border border-gray-200">
+    <div className=" max-w-md rounded-lg overflow-hidden shadow-lg bg-white border border-gray-200 my-6">
         <div className = "border border-gray-200">
             <img className="w-full" src={props.img} alt={props.name}/>
             <h2 className="font-bold text-xl mb-2 text-gray-800 py-2 px-3" >Pizza {props.name}</h2>
