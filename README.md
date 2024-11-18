@@ -5,7 +5,7 @@
 2. Iniciarme en Tailwindcss
 
 ## GitHub Pages
-[Git Pages]()
+[Git Pages](https://dtdavid.github.io/hito1_pizzeria/)
 
 ## GitHub proyecto
 [GitHub](https://github.com/dtdavid/hito1_pizzeria.git)
