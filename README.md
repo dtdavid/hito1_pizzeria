@@ -15,4 +15,4 @@
 
 ## Capturas de pantalla
 
-![Página principal](./assets/img/screenshot.png)
+![Página principal](./src/assets/img/screenshot.png)
