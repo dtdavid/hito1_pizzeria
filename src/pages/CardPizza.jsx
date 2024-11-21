@@ -5,7 +5,7 @@ import { PiEyesFill } from "react-icons/pi"
 import { GiPizzaSlice } from "react-icons/gi"
 
 const CardPizza = (props) => {
-    console.log(props)
+    
   return (
     <div className=" max-w-md rounded-lg overflow-hidden shadow-lg bg-white border border-gray-200 my-6">
         <div className = "border border-gray-200">

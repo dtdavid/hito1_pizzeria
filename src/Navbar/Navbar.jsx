@@ -6,7 +6,7 @@ import { AiFillLock, AiOutlineLock, AiFillUnlock } from "react-icons/ai"
 
 const Navbar = () => {
     const total = 2500
-    const token = false
+    const token = true
   return (
     <div className = 'flex flex-row items-center justify-between px-4 py-2 bg-gray-800 shadow-md'>
       <div className = 'flex items-center space-x-4'>
