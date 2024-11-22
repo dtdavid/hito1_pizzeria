@@ -7,29 +7,39 @@ const Register = () => {
     //const [submit, setSubmit] = useState([])
 
      const validar = (e) => {
-        console.log(email, password, confirmPas)
+        //console.log(email, password, confirmPas)
         e.preventDefault() //previene el envío automático del formulario
-        const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-        const regexPassword = /^.{6,}$/
-        console.log(email)
+        const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/ /*Al menos un caracter antes
+        del @ que no sea un espacio vacío ni un @, un @, al menos 1 caracter que no
+        sea espacio vacío o un @, un . y al menos un caracter que no sea espacio vacío
+        o un @  */
+        const regexPassword = /^.{6,}$/  // como mínimo 6 caracteres
+        //console.log(email)
+
+        /* comprobación del campo email que no esté vacío y que cumpla con la expresión 
+        RegExp*/
         if(email.trim() ==='' || !regexEmail.test(email)) {
             alert ("Campo email vacío o dirección no válida")
             return
         }
+        //comprobamos que los campos password no estén vacíos
         if (password.trim() === '' || confirmPas.trim() === '' ) {
             alert("campos password o confirmar password vacíos")
             return
         }
+        //comprobamos que el campo password tenga al menos 6 caracteres
         if (!regexPassword.test(password)) {
             alert("campo mínimo de 6 caractéres!")
             return
         }
+        //comprobamos que password y confirPas sean iguales
         if(password !== confirmPas) {
             alert("el password no está confirmado")
             return
         }
+        /*Se ha enviado el formulario con éxito*/
         alert("¡ SEND SUCCESFULL!")
-
+        // vaciamos el formulario en caso de que todo esté bien
         setEmail('')
         setPassword('')
         setConfirmPas('')
