@@ -15,8 +15,8 @@ function App() {
       <div className = "flex-grow">
       {/* <Home /> */}
       
-      {/*<Register/>*/}
-      <Login />
+      <Register/>
+      {/*<Login />*/}
       </div>
       <Footer />
       
