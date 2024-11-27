@@ -2,7 +2,8 @@ import React from 'react'
 import { format } from '../utils/format'
 import { GiShoppingCart } from "react-icons/gi"
 import { PiEyesFill } from "react-icons/pi"
-import { GiPizzaSlice } from "react-icons/gi"
+//import { GiPizzaSlice } from "react-icons/gi"
+import { FaPizzaSlice } from "react-icons/fa"
 
 const CardPizza = (props) => {
     
@@ -13,8 +14,20 @@ const CardPizza = (props) => {
             <h2 className="font-bold text-xl mb-2 text-gray-800 py-2 px-3" >Pizza {props.name}</h2>
         </div>
         <div className="px-6 py-4 border border-gray-200 ">
-            <p className="text-gray-600 text-base flex justify-center items-center gap-1"><GiPizzaSlice className="mr-2" />Ingredientes:</p>
-            <p className="text-gray-600 text-base flex justify-center">{props.ingredients}</p>
+            <p className="text-gray-600 text-base flex justify-center items-center gap-1">Ingredientes:</p>
+            <ul role="list" className=" flex items-center gap-2"><FaPizzaSlice className="text-yellow-500 h-4 w-4" />
+            {/*###########################Lista de ingredientes#################### */}
+
+            {/*mapeamos la lista de ingredientes, para que no se rendericen pegados */}
+            {props.ingredients.map((ingredient, index) => (  
+              <li className = "text-gray-600" key={index}>{ingredient}
+              {/*aquí le metemos una condición, para inserta una "," mientras el 
+              indice sea menor al tamaño del array, así no se le pone la coma en
+               el último elemento, aunque varíe de tamaño */}
+              {index < props.ingredients.length - 1 && ", "}</li>
+            ))}    
+            </ul>
+            {/* <p className="text-gray-600 text-base flex justify-center"><GiPizzaSlice className="mr-2" />{props.ingredients}</p> */}
         </div>
         <div className="px-6 py-4 flex justify-center flex-col border border-gray-200">
             <h1 className ="flex justify-center mb-4 text-xl font-semibold">Precio: ${format(props.price)}</h1>

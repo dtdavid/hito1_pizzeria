@@ -7,14 +7,14 @@ const Home = () => {
   return (
     <>
         <Header />
-        <main className = " grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 my-4 px-4">
+        <main className = " grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 my-4 px-4 max-w-7xl mx-auto">
           {/*con grid activamos el CSS GRID, grid-cols-1 activa 1 columna por defecto y se va cambiando según el tamaño del dispositivo hasta llegar a 3 columnas */}
          {pizzas.map((pizza)=>{
           return  <CardPizza
           key = {pizza.id}
           name={pizza.name}
           price={pizza.price}
-          ingredients={pizza.ingredientes}
+          ingredients={pizza.ingredients}
           img={pizza.img}
         />
          })}
