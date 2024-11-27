@@ -15,7 +15,7 @@ const Navbar = () => {
         {token ? (
           <>
           <button className="flex items-center border-2 border-white-500 text-white py-1 px-4 rounded-lg bg-black"><AiFillLock className="mr-2" />Login</button>
-          <button class="bg-black text-white py-1 px-4 rounded-lg flex items-center border border-white-500">
+          <button className="bg-black text-white py-1 px-4 rounded-lg flex items-center border border-white-500">
           <AiFillLock className="mr-2" />Register</button>
           </>) :( 
           <>

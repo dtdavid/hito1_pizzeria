@@ -1,13 +1,25 @@
 import React from 'react'
 import Header from './Header'
 import CardPizza from './CardPizza'
-
+import {pizzas} from '../data/pizzas'
 const Home = () => {
+    
   return (
     <>
         <Header />
-        <main className = "flex flex-row justify-center gap-6 my-4">
-        <CardPizza
+        <main className = " grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 my-4 px-4">
+          {/*con grid activamos el CSS GRID, grid-cols-1 activa 1 columna por defecto y se va cambiando según el tamaño del dispositivo hasta llegar a 3 columnas */}
+         {pizzas.map((pizza)=>{
+          return  <CardPizza
+          key = {pizza.id}
+          name={pizza.name}
+          price={pizza.price}
+          ingredients={pizza.ingredientes}
+          img={pizza.img}
+        />
+         })}
+         
+        {/* <CardPizza
           name="Napolitana"
           price={5950}
           ingredients={["mozzarella, ", " tomates, ", " jamón, ", " orégano"]}
@@ -24,7 +36,7 @@ const Home = () => {
           price={6950}
           ingredients={["mozzarella, ", " pepperoni, ", " orégano"]}
           img="https://firebasestorage.googleapis.com/v0/b/apis-varias-mias.appspot.com/o/pizzeria%2Fpizza-1239077_640_com.jpg?alt=media&token=e7cde87a-08d5-4040-ac54-90f6c31eb3e3"
-        />
+        /> */}
         </main>
     </>
   )
