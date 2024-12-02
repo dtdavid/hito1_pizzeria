@@ -34,16 +34,16 @@ const Cart = () => {
         ") con el precio de la pizza * el
         número de pizzas que eligió el usuario, que debería ser como mínimo "1" y 
         llamamos a la función desde el h1 donde se muestra "Total: $" */ }
-
+        const total = cart.reduce((suma, pizza) => suma + pizza.price * pizza.count, 0)
         //No se renderiza bien o no se actualiza junto con los cambios en el carro. Voy a probar con useMemo
     
-        const total = useMemo(() => {
-            return cart.reduce((suma, pizza) => suma + pizza.price * pizza.count, 0)
-    }, [cart])
+    //     const total = useMemo(() => {
+    //         return cart.reduce((suma, pizza) => suma + pizza.price * pizza.count, 0)
+    // }, [cart])
 
-        useEffect(() => {
-        setTotalPrice(total)
-    }, [total])
+    //     useEffect(() => {
+    //     setTotalPrice(total)
+    // }, [total])
     //console.log(total)
 
     {/* Cambiamos a mayúscula la primera letra y llamamos a la función desde el párrafo con el pizza.name o copiamos esta línea directamente en el párrafo. */}
@@ -74,7 +74,7 @@ const Cart = () => {
             </div>
         </li>
         ))}
-        <h1 className = "text-xl font-bold mt-5">Total: ${format(totalPrice)}</h1>
+        <h1 className = "text-xl font-bold mt-5">Total: ${format(total)}</h1>
         <button className = "mt-2 px-6 py-2 border rounded-md text-center text-white bg-black ">Pagar</button>
     </ul>
     </div>
