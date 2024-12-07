@@ -1,15 +1,26 @@
-import React from 'react'
+import { useEffect, useState } from 'react'
 import Header from './Header'
 import CardPizza from './CardPizza'
-import {pizzas} from '../data/pizzas'
+//import {pizzas} from '../data/pizzas'
 const Home = () => {
+  // utilizamos el useState para guardar la información de la API
+  const [pizza, setPizza] = useState([])
+  //Renderizado de pizzas a partir de la API del backend
+  useEffect (() => {
+    fetch('http://localhost:5000/api/pizzas')
+    .then((res) => res.json())
+    .then((data) => {
+        setPizza(data)
+        console.log(data)
+    })
     
+  }, [])
   return (
     <>
         <Header />
         <main className = " grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 my-4 px-4 max-w-7xl mx-auto">
           {/*con grid activamos el CSS GRID, grid-cols-1 activa 1 columna por defecto y se va cambiando según el tamaño del dispositivo hasta llegar a 3 columnas */}
-         {pizzas.map((pizza)=>{
+         {pizza.map((pizza)=>{
           return  <CardPizza
           key = {pizza.id}
           name={pizza.name}
