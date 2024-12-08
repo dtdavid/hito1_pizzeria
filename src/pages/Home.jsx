@@ -15,10 +15,11 @@ const Home = () => {
     })
     
   }, [])
+  //grid grid-cols-1
   return (
-    <>
+    <div className = "w-full">
         <Header />
-        <main className = " grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 my-4 px-4 max-w-7xl mx-auto">
+        <main className = " grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 my-4 px-4">
           {/*con grid activamos el CSS GRID, grid-cols-1 activa 1 columna por defecto y se va cambiando según el tamaño del dispositivo hasta llegar a 3 columnas */}
          {pizza.map((pizza)=>{
           return  <CardPizza
@@ -49,7 +50,7 @@ const Home = () => {
           img="https://firebasestorage.googleapis.com/v0/b/apis-varias-mias.appspot.com/o/pizzeria%2Fpizza-1239077_640_com.jpg?alt=media&token=e7cde87a-08d5-4040-ac54-90f6c31eb3e3"
         /> */}
         </main>
-    </>
+    </div>
   )
 }
 

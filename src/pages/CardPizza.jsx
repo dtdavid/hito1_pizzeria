@@ -15,12 +15,13 @@ const CardPizza = (props) => {
         </div>
         <div className="px-6 py-4 border border-gray-200 ">
             <p className="text-gray-600 text-base flex justify-center items-center gap-1">Ingredientes:</p>
-            <ul role="list" className=" flex items-center gap-2"><FaPizzaSlice className="text-yellow-500 h-4 w-4" />
-            {/*###########################Lista de ingredientes#################### */}
+            <ul role="list" className=" flex items-center justify-center flex-wrap space-x-1">
+              <FaPizzaSlice className="text-yellow-500 h-4 w-4 mr-2" />
+              {/*###########################Lista de ingredientes#################### */}
 
-            {/*mapeamos la lista de ingredientes, para que no se rendericen pegados */}
-            {props.ingredients.map((ingredient, index) => (  
-              <li className = "text-gray-600" key={index}>{ingredient}
+              {/*mapeamos la lista de ingredientes, para que no se rendericen pegados */}
+              {props.ingredients.map((ingredient, index) => (  
+              <li className = "text-gray-600 flex items-center" key={index}>{ingredient}
               {/*aquí le metemos una condición, para inserta una "," mientras el 
               indice sea menor al tamaño del array, así no se le pone la coma en
                el último elemento, aunque varíe de tamaño */}

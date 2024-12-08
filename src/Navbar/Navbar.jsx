@@ -8,7 +8,7 @@ const Navbar = () => {
     const total = 2500
     const token = true
   return (
-    <div className = 'flex flex-row items-center justify-between px-4 py-2 bg-gray-800 shadow-md'>
+    <div className = 'w-full flex flex-row items-center justify-between px-4 py-2 bg-gray-800 shadow-md'>
       <div className = 'flex items-center space-x-4'>
         <p className = "flex items-center space-x-2 text-white">Pizzería Mamma Mia!</p>
         <button className = "bg-black text-white py-1 px-4 rounded-lg flex items-center border border-white"><GiPizzaSlice className="mr-2" />Home</button>  

@@ -3,7 +3,7 @@ import React from 'react'
 const Header = () => {
   return (
     <header 
-    className='bg-cover bg-center h-56'
+    className='w-full bg-cover bg-center h-56 '
     style = {{
       backgroundImage: "url('./img/Header.jpg ')"
     }}>
