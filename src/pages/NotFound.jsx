@@ -7,7 +7,7 @@ const NotFound = () => {
     <main className="grid w-full h-full place-items-center px-6 py-24 sm:py-32 lg:px-8
      bg-cover bg-center"
      style ={{
-          backgroundImage: "url('./img/perdido.jpg')",
+          backgroundImage: "url('/img/perdido.jpg')",
           height: "calc(100vh - 107px)"
             }}
      >
