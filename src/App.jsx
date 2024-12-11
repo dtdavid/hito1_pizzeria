@@ -10,6 +10,8 @@ import Register from './pages/Register'
 import Login from './pages/Login'
 
 import {Routes, Route} from "react-router-dom"
+import NotFound from './pages/NotFound'
+import Profile from './pages/Profile'
 
 function App() {
   
@@ -24,8 +26,8 @@ function App() {
           {/* Esta ruta se renderiza directamente desde el navegador con /pizza/p001 */}
           <Route path="/pizza/p001" element={<Pizza />}></Route> 
           <Route path="/Cart" element={<Cart />}></Route>
-          {/* <Route path="/Profile" element={<Profile />}></Route>
-          <Route path="*" element={<NotFound />}></Route> */}
+          <Route path="/Profile" element={<Profile />}></Route>
+          <Route path="*" element={<NotFound />}></Route> 
         </Routes>
       </div>
       <Footer />      
