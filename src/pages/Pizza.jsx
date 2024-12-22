@@ -13,7 +13,7 @@ useEffect (() => {
     .then((res)=> res.json())
     .then((data) => {
         setPizza(data)
-        console.log(data)
+        //console.log(data)
     })
     .catch((err) => console.error('Error fetching pizza:', err))
 }, [])

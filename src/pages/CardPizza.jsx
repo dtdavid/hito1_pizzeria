@@ -1,12 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { format } from '../utils/format'
 import { GiShoppingCart } from "react-icons/gi"
 import { PiEyesFill } from "react-icons/pi"
 //import { GiPizzaSlice } from "react-icons/gi"
 import { FaPizzaSlice } from "react-icons/fa"
+import  { cartContext } from '../components/CartContext'
 
 const CardPizza = (props) => {
-    
+    //console.log("Props:", props);
+    //traemos el handleAgregar de nuestro useContext para manejar el botón añadir
+    const {handleAgregar} = useContext(cartContext)
+
   return (
     <div className=" max-w-md rounded-lg overflow-hidden shadow-lg bg-white border border-gray-200 my-6">
         <div className = "border border-gray-200">
@@ -35,7 +39,12 @@ const CardPizza = (props) => {
             <footer className = "flex flex-row justify-around mb-2">
             <button className="bg-white text-black py-1 px-2 flex flex-row items-center gap-1
              rounded-lg border border-black">Ver Más<PiEyesFill /></button>
-            <button className="bg-black text-white py-1 px-2 flex flex-row items-center gap-1 rounded-lg ">Añadir<GiShoppingCart className="mr-2" size = {20} /></button>
+             {/* añadimos evento onClick al botón Añadir, para llamar a la función handleAgregar */}
+            <button
+             onClick = {()=> {
+             //console.log("Añadiendo pizza con id:", props.id)
+             handleAgregar({id:props.id, name: props.name, price: props.price, img: props.img })}}
+             className="bg-black text-white py-1 px-2 flex flex-row items-center gap-1 rounded-lg ">Añadir<GiShoppingCart className="mr-2" size = {20} /></button>
              </footer>
         </div>
     </div>

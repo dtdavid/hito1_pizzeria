@@ -1,40 +1,51 @@
-import { useState, useMemo, useEffect } from 'react'
-import {pizzaCart} from '../data/pizzas'
+import { useContext } from 'react'
+//import {pizzaCart} from '../data/pizzas'
 import {format} from '../utils/format'
-
+import { cartContext } from '../components/CartContext'
 
 const Cart = () => {
+    // sustituimos el useState por el cartContext
+    //####ESTO CAMBIA AHORA CON EL CONTEXTPROVIDER####
+        const {cart, handleAgregar, handleQuitar, total} = useContext(cartContext)
 
-    const [cart, setCart] = useState(pizzaCart)
-    const [totalPrice, setTotalPrice] = useState(0)
+    //const [cart, setCart] = useContext(cartContext)
+
+
+    //const [cart, setCart] = useState(pizzaCart)
+    //const [totalPrice, setTotalPrice] = useState(0)
     //console.log(cart)
+    // ########### ESTA LÓGICA SE PASÓ TODA PARA EL CARTCONTEXT########
 
-    const handleAgregar = (id) => {
+    /*const handleAgregar = (id) => {
         // cart[indice].count++
         // setCart([...cart])
         // cambiamos trabajando con prev
 
         setCart((prevCart) => 
-            prevCart.map((pizza) =>  /*utilizo prevCart y lo mapeo para crear
-         un nuevo objeto cambiando la key count si se modifica*/
+            prevCart.map((pizza) =>  //utilizo prevCart y lo mapeo para crear
+         un nuevo objeto cambiando la key count si se modifica
             pizza.id === id ? {...pizza, count: pizza.count + 1} : pizza)
         )
-    }
-    const handleQuitar = (id) => {
+    }*/
+
+    /*const handleQuitar = (id) => {
         // cart[indice].count--
-        // {/*Este método, aunque elimina pizzas del array, no elimina la pizza que se está bajando a 0, no funciona bien */}
+        // {//Este método, aunque elimina pizzas del array, no elimina la pizza que se está bajando a 0, no funciona bien }
         // setCart([...cart.filter((pizza) => pizza.count > 0)])
         setCart((prevCart) => 
             prevCart.map((pizza) =>
             pizza.id === id ? {...pizza, count: pizza.count -1} : pizza
             ).filter((pizza) => pizza.count > 0) //aquí filtramos que las pizzas tengan el contador por encima de 0
         )
-    }
-    {/* recorremos el estado del carrito (cart) con el método reduce, para sumar "0" ("sumar" hace de acumulador y su valor inicial es "0
+    }*/
+    /* recorremos el estado del carrito (cart) con el método reduce, para sumar "0" ("sumar" hace de acumulador y su valor inicial es "0
         ") con el precio de la pizza * el
         número de pizzas que eligió el usuario, que debería ser como mínimo "1" y 
-        llamamos a la función desde el h1 donde se muestra "Total: $" */ }
-        const total = cart.reduce((suma, pizza) => suma + pizza.price * pizza.count, 0)
+        llamamos a la función desde el h1 donde se muestra "Total: $" */
+
+        //const total = cart.reduce((suma, pizza) => suma + pizza.price * pizza.count, 0)
+
+
         //No se renderiza bien o no se actualiza junto con los cambios en el carro. Voy a probar con useMemo
     
     //     const total = useMemo(() => {
@@ -46,10 +57,12 @@ const Cart = () => {
     // }, [total])
     //console.log(total)
 
-    {/* Cambiamos a mayúscula la primera letra y llamamos a la función desde el párrafo con el pizza.name o copiamos esta línea directamente en el párrafo. */}
-    const capitalize = (pizza) => {
+    /* Cambiamos a mayúscula la primera letra y llamamos a la función desde el párrafo con el pizza.name o copiamos esta línea directamente en el párrafo. */
+
+    //ESTA FUNCIÓN YA NO LA USAMOS
+    /*const capitalize = (pizza) => {
         return pizza.charAt(0).toUpperCase() + pizza.slice(1).toLowerCase()
-    }
+    }*/
   return (
     <>
     <div className="max-w-xl mx-auto px-4">
@@ -70,7 +83,7 @@ const Cart = () => {
                 <p className="text-sm font-semibold">${format(pizza.price)}</p>
                 <button className="w-8 h-8 border rounded-md border-red-600 text-red-600 text-lg items-center justify-center" onClick={() => handleQuitar(pizza.id)}>-</button>
                 <span key= {pizza.id} className="text-sm font-semibold">{pizza.count}</span>
-                <button className="w-8 h-8 border  rounded border-blue-600 text-blue-600 text-lg items-center justify-center" onClick={() => handleAgregar(pizza.id)}>+</button>
+                <button className="w-8 h-8 border  rounded border-blue-600 text-blue-600 text-lg items-center justify-center" onClick={() => handleAgregar(pizza)}>+</button>   {/*cambiamos pizza x pizza.id para pasar el objeto completo y manejarlo en otro lado*/}
             </div>
         </li>
         ))}
