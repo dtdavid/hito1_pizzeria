@@ -12,10 +12,12 @@ import Login from './pages/Login'
 import {Routes, Route} from "react-router-dom"
 import NotFound from './pages/NotFound'
 import Profile from './pages/Profile'
+import CartContextProvider from './components/CartContext'
 
 function App() {
   
   return (
+    <CartContextProvider> 
     <div className = "w-full flex flex-col min-h-screen justify-center items-center">
       <Navbar />
       <div className = "flex-grow flex justify-center items-center w-full">
@@ -32,6 +34,7 @@ function App() {
       </div>
       <Footer />      
     </div>
+    </CartContextProvider>
   )
 }
 

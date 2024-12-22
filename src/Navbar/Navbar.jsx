@@ -1,12 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { format } from '../utils/format'
 import { GiShoppingCart } from "react-icons/gi" 
 import { GiPizzaSlice } from "react-icons/gi"
 import { AiFillLock, AiOutlineLock, AiFillUnlock } from "react-icons/ai"
 import { Link } from "react-router-dom"
+import { cartContext } from '../components/CartContext'
+
 
 const Navbar = () => {
-    const total = 2500
+    //const total = 2500  // cambiamos esto por la línea de abajo
+    const {total} = useContext(cartContext)
     const token = true
   return (
     <div className = 'w-full flex flex-row items-center justify-between px-4 py-2 bg-gray-800 shadow-md'>
@@ -17,7 +20,7 @@ const Navbar = () => {
         <Link to="/">
         <button className = "bg-black text-white py-1 px-4 rounded-lg flex items-center border border-white"><GiPizzaSlice className="mr-2" />Home</button> 
         </Link>
-         {/* Botones que dependen de token */}
+          {/* Botones que dependen de token  */}
         {token ? (
         
           <>
