@@ -13,27 +13,30 @@ import {Routes, Route} from "react-router-dom"
 import NotFound from './pages/NotFound'
 import Profile from './pages/Profile'
 import CartContextProvider from './components/CartContext'
+import FetchContextProvider from './components/FetchContext'
 
 function App() {
   
   return (
-    <CartContextProvider> 
-    <div className = "w-full flex flex-col min-h-screen justify-center items-center">
-      <Navbar />
-      <div className = "flex-grow flex justify-center items-center w-full">
-        <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/Register" element={<Register />}></Route>
-          <Route path="/Login" element={<Login />}></Route>
+    <CartContextProvider>
+      <FetchContextProvider> 
+        <div className = "w-full flex flex-col min-h-screen justify-center items-center">
+          <Navbar />
+        <div className = "flex-grow flex justify-center items-center w-full">
+          <Routes>
+            <Route path="/" element={<Home />}></Route>
+            <Route path="/Register" element={<Register />}></Route>
+            <Route path="/Login" element={<Login />}></Route>
           {/* Esta ruta se renderiza directamente desde el navegador con /pizza/p001 */}
-          <Route path="/pizza/p001" element={<Pizza />}></Route> 
-          <Route path="/Cart" element={<Cart />}></Route>
-          <Route path="/Profile" element={<Profile />}></Route>
-          <Route path="*" element={<NotFound />}></Route> 
-        </Routes>
-      </div>
-      <Footer />      
-    </div>
+            <Route path="/pizza/:id" element={<Pizza />}></Route> 
+            <Route path="/Cart" element={<Cart />}></Route>
+            <Route path="/Profile" element={<Profile />}></Route>
+            <Route path="*" element={<NotFound />}></Route> 
+          </Routes>
+        </div>
+        <Footer />      
+        </div>
+      </FetchContextProvider>
     </CartContextProvider>
   )
 }
