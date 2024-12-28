@@ -8,22 +8,7 @@ export const cartContext = createContext()
 const CartContextProvider = ({children}) => {
     //useState se inicializa omo un [] si no hay nada en el localStorage
     const  [cart, setCart] = useState([])
-        
-{/*   
-        () => {
-        const savedCart = localStorage.getItem('cart')
-        return savedCart ? JSON.parse(savedCart) : [] 
-    })  //el estado del carrito empieza vacío
-
-        // useEffect para que se ejecute la carga(localStorage.setItem), cuando el estado del Cart cambie de estado
-        // y se obtiene el dato con (localStorage.getItem)
-        useEffect(()=>{
-            localStorage.setItem('cart', JSON.stringify(cart))
-        }, [cart])
-
-    //### localStorage para guardar el carrito y probar si funciona####
-
-*/} 
+ 
 
     // ######TRASLADAMOS LA LÓGICA DEL Cart.jsx PARA EL Context########
 

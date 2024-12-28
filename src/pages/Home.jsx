@@ -1,30 +1,36 @@
 import { useContext, useEffect, useState } from 'react'
 import Header from './Header'
 import CardPizza from './CardPizza'
+import { FetchContext } from '../components/FetchContext'
 //import { cartContext } from '../components/CartContext'
 //import {pizzas} from '../data/pizzas'
 const Home = () => {
   // utilizamos el useState para guardar la información de la API
-  const [pizza, setPizza] = useState([])
 
+  //#####CAMBIAMOS ESTA CONSTANTE POR LA DEL USEcONTEXT#####
+  //const [pizza, setPizza] = useState([])
+  const {connect} = useContext(FetchContext)
   //const {handleAgregar} = useContext(cartContext)
   //Renderizado de pizzas a partir de la API del backend
-  useEffect (() => {
-    fetch('http://localhost:5000/api/pizzas')
-    .then((res) => res.json())
-    .then((data) => {
-        setPizza(data)
-        //console.log(data)
-    })
+
+  //#####PASAMOS LA CONEXIÓN A UN NUEVO COMPONENTE FetchContextProvider#####
+  // useEffect (() => {
+  //   fetch('http://localhost:5000/api/pizzas')
+  //   .then((res) => res.json())
+  //   .then((data) => {
+  //       setPizza(data)
+  //       //console.log(data)
+  //   })
     
-  }, [])
+  // }, [])
+
   //grid grid-cols-1
   return (
     <div className = "w-full">
         <Header />
         <main className = " grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 my-2 px-4 justify-items-center ">
           {/*con grid activamos el CSS GRID, grid-cols-1 activa 1 columna por defecto y se va cambiando según el tamaño del dispositivo hasta llegar a 3 columnas */}
-         {pizza.map((singlePizza)=>{
+         {connect.map((singlePizza)=>{
           return  <CardPizza
           key = {singlePizza.id}
           id= {singlePizza.id}
@@ -32,6 +38,7 @@ const Home = () => {
           price={singlePizza.price}
           ingredients={singlePizza.ingredients}
           img={singlePizza.img}
+          desc={singlePizza.desc}
         />
          })}
          

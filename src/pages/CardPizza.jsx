@@ -5,11 +5,15 @@ import { PiEyesFill } from "react-icons/pi"
 //import { GiPizzaSlice } from "react-icons/gi"
 import { FaPizzaSlice } from "react-icons/fa"
 import  { cartContext } from '../components/CartContext'
+import { Link } from 'react-router-dom'
+//import { FetchContext } from '../components/FetchContext'
 
 const CardPizza = (props) => {
-    //console.log("Props:", props);
+    //console.table(props)
     //traemos el handleAgregar de nuestro useContext para manejar el botón añadir
     const {handleAgregar} = useContext(cartContext)
+    // acceder a las pizzas desde FetchContext
+    //const {connect} = useContext(FetchContext)
 
   return (
     <div className=" max-w-md rounded-lg overflow-hidden shadow-lg bg-white border border-gray-200 my-6">
@@ -37,13 +41,16 @@ const CardPizza = (props) => {
         <div className="px-6 py-4 flex justify-center flex-col border border-gray-200">
             <h1 className ="flex justify-center mb-4 text-xl font-semibold">Precio: ${format(props.price)}</h1>
             <footer className = "flex flex-row justify-around mb-2">
-            <button className="bg-white text-black py-1 px-2 flex flex-row items-center gap-1
+               <Link to={`/pizza/${props.id}`} state={props}> {/*pasamos con state las props de la pizza, así evitamos tener que usar la url*/}
+            <button 
+            className="bg-white text-black py-1 px-2 flex flex-row items-center gap-1
              rounded-lg border border-black">Ver Más<PiEyesFill /></button>
+             </Link>
              {/* añadimos evento onClick al botón Añadir, para llamar a la función handleAgregar */}
             <button
              onClick = {()=> {
              //console.log("Añadiendo pizza con id:", props.id)
-             handleAgregar({id:props.id, name: props.name, price: props.price, img: props.img })}}
+             handleAgregar({id:props.id, name: props.name, price: props.price, img: props.img, desc: props.desc })}}
              className="bg-black text-white py-1 px-2 flex flex-row items-center gap-1 rounded-lg ">Añadir<GiShoppingCart className="mr-2" size = {20} /></button>
              </footer>
         </div>
