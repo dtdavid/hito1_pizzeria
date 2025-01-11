@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";  //añadir useContext
+import { createContext, useState } from "react";  //añadir useContext
 //import { pizzaCart } from "../data/pizzas"; # NO HARÍA FALTA
 //import { format } from "../utils/format"; # NO HARÍA FALTA
 // definimos el contexto del carrito
@@ -39,6 +39,8 @@ const CartContextProvider = ({children}) => {
         )
     }
     const total = cart.reduce((suma, pizza) => suma + pizza.price * pizza.count, 0)
+
+
     //##################################################################################//
 
 

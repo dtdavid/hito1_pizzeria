@@ -2,11 +2,15 @@ import { useContext } from 'react'
 //import {pizzaCart} from '../data/pizzas'
 import {format} from '../utils/format'
 import { cartContext } from '../components/CartContext'
+import { useToken } from '../components/TokenContext'
+import { Link } from 'react-router-dom'
 
 const Cart = () => {
     // sustituimos el useState por el cartContext
     //####ESTO CAMBIA AHORA CON EL CONTEXTPROVIDER####
         const {cart, handleAgregar, handleQuitar, total} = useContext(cartContext)
+        const { token } = useToken()
+        //console.log(token)
 
     //const [cart, setCart] = useContext(cartContext)
 
@@ -88,7 +92,14 @@ const Cart = () => {
         </li>
         ))}
         <h1 className = "text-xl font-bold mt-5">Total: ${format(total)}</h1>
-        <button className = "mt-2 px-6 py-2 border rounded-md text-center text-white bg-black ">Pagar</button>
+        { token ? //disabled={!token} Esto se podría hacer directamente con la propiedad disabled
+         <button className = "mt-2 px-6 py-2 border rounded-md text-center text-white bg-black ">Pagar</button>
+          : 
+        <Link to="/login">
+          <button className = "mt-2 px-6 py-2 border rounded-md text-center text-white bg-blue-400">Login</button>
+        </Link>
+        }
+        
     </ul>
     </div>
     </>

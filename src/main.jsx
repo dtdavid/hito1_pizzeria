@@ -1,14 +1,17 @@
 import { StrictMode } from 'react'
-import { createRoot, ReactDom } from 'react-dom/client' 
+import { createRoot} from 'react-dom/client' 
 import { BrowserRouter } from 'react-router-dom'
 
 import './index.css'
 import App from './App.jsx'
+import { TokenContextProvider } from './components/TokenContext.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter >
-    <App />
-    </BrowserRouter>
+    <TokenContextProvider>
+      <BrowserRouter >
+        <App />
+      </BrowserRouter>
+    </TokenContextProvider>
   </StrictMode>,
 )

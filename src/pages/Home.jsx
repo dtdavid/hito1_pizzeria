@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext } from 'react'
 import Header from './Header'
 import CardPizza from './CardPizza'
 import { FetchContext } from '../components/FetchContext'

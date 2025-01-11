@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import  { useContext } from 'react'
 import { format } from '../utils/format'
 import { GiShoppingCart } from "react-icons/gi"
 import { PiEyesFill } from "react-icons/pi"
@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom'
 const CardPizza = (props) => {
     //console.table(props)
     //traemos el handleAgregar de nuestro useContext para manejar el botón añadir
-    const {handleAgregar} = useContext(cartContext)
+    const { handleAgregar } = useContext(cartContext)
     // acceder a las pizzas desde FetchContext
     //const {connect} = useContext(FetchContext)
 
