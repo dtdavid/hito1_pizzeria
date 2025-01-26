@@ -1,6 +1,15 @@
-
+import { useEffect } from "react"
+import { useToken } from "../components/TokenContext"
 
 const Profile = () => {
+
+  const { getProfile, userData, logout } = useToken()
+
+  useEffect(() => {
+    getProfile()
+  }, [getProfile])
+
+
   return (
     
     <main className="grid w-full h-screen place-items-center px-6 py-24 sm:py-32 lg:px-8
@@ -17,6 +26,7 @@ const Profile = () => {
                     </label>
                 <div className="mt-2">
                 <input
+                value = {userData.email}
                 placeholder='nombre@dominio.com'
                 id="email"
                 name="email"
@@ -29,6 +39,7 @@ const Profile = () => {
     <div>
        {/*######################################Input Sign in ############################ */}
       <button
+      onClick = {logout}
         type="submit"
         className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
       >

@@ -1,7 +1,10 @@
 import { useState } from 'react'
-
+import { useToken } from '../components/TokenContext'
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
+  const navigate = useNavigate()
+  const { login } = useToken()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   //creamos un useState para mostrar un mensaje de error
@@ -9,7 +12,7 @@ const Login = () => {
   //creamos un useState para mostrar un mensaje de exito
   const [exito, setExito] = useState('')
 
-  const enviar = (e) => {
+  const enviar = async (e) => {
     //console.log(email, password)
     e.preventDefault() // aquí evitamos el comportamiento del evento onSubmit y así podamos evaluar el formulario
     //usamos expresiones RexExp para validaciones simples del campo email y password
@@ -33,6 +36,8 @@ const Login = () => {
     }
     //si cumple todo, mostramos un mensaje de éxito
       setExito('Envío satisfactorio!')
+      await login(email, password)
+      navigate('/profile')
 
     setEmail('')
     setPassword('')
