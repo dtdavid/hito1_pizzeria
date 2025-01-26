@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 //import {pizzaCart} from '../data/pizzas'
 import {format} from '../utils/format'
 import { cartContext } from '../components/CartContext'
@@ -11,6 +11,38 @@ const Cart = () => {
         const {cart, handleAgregar, handleQuitar, total} = useContext(cartContext)
         const { token } = useToken()
         //console.log(token)
+        const [ mensajePago, setMensajePago ] = useState('') // vamos a crear un estado sólo para mostrar el mensaje de pago en caso de que realmente sea exitoso
+
+        const pagar = async () => {
+            //console.log("Token:", token)
+            //console.log("Cart:", cart)
+
+            //ME HA LLEVADO UN BUEN RATO ENCONTRAR EL ERROR DE "NOT FOUNT" QUE ME APARECÍA EN LA CONSOLA Y EL ERROR ERA QUE ME FALTABA LA S FINAL DE CHECKOUTS EN LA URL 🤦‍♀️🤦‍♀️🤦‍♀️🤦‍♀️
+            try {
+                const response = await fetch("http://localhost:5000/api/checkouts", {
+                    method: "POST",
+                    headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                    },
+                    body: JSON.stringify({ cart }),
+                });
+                if(response.ok) {
+                    setMensajePago('Pago realizado con éxito')
+                    alert('Pago realizado con éxito')
+                
+                } else {
+                    setMensajePago('')
+                    alert('Error al procesar el pago')
+                
+                }
+            } catch (error) {
+                setMensajePago('')
+                alert("Ocurrió un error al procesar el pago.", error)
+                
+            }
+        }
+            
 
     //const [cart, setCart] = useContext(cartContext)
 
@@ -80,20 +112,23 @@ const Cart = () => {
                 alt={pizza.name} 
                 src={pizza.img} 
                 className="w-18 h-14 objet-cover bg-gray-50" />
-                <p className="text-sm font-semibold text-gray-900">{/*capitalize(pizza.name)*/ pizza.name.charAt(0).toUpperCase() + pizza.name.slice(1).toLowerCase()}</p>
+                <p className="text-lg font-semibold text-gray-900">{/*capitalize(pizza.name)*/ pizza.name.charAt(0).toUpperCase() + pizza.name.slice(1).toLowerCase()}</p>
             </div>
                 {/*precio - botones - contador */}
             <div className="flex items-center gap-x-4">
-                <p className="text-sm font-semibold">${format(pizza.price)}</p>
+                <p className="text-lg font-semibold ml-2"> ${format(pizza.price)}</p>
                 <button className="w-8 h-8 border rounded-md border-red-600 text-red-600 text-lg items-center justify-center" onClick={() => handleQuitar(pizza.id)}>-</button>
-                <span key= {pizza.id} className="text-sm font-semibold">{pizza.count}</span>
+                <span key= {pizza.id} className="text-lg font-semibold">{pizza.count}</span>
                 <button className="w-8 h-8 border  rounded border-blue-600 text-blue-600 text-lg items-center justify-center" onClick={() => handleAgregar(pizza)}>+</button>   {/*cambiamos pizza x pizza.id para pasar el objeto completo y manejarlo en otro lado*/}
             </div>
         </li>
         ))}
         <h1 className = "text-xl font-bold mt-5">Total: ${format(total)}</h1>
+        {mensajePago && <h3 className='text-green-600 m-4'>{mensajePago}</h3>} {/* Solo se muestra si se ha realizado el pago*/}
         { token ? //disabled={!token} Esto se podría hacer directamente con la propiedad disabled
-         <button className = "mt-2 px-6 py-2 border rounded-md text-center text-white bg-black ">Pagar</button>
+         <button 
+         onClick = {pagar}
+         className = "mt-2 px-6 py-2 border rounded-md text-center text-white bg-black ">Pagar</button>
           : 
         <Link to="/login">
           <button className = "mt-2 px-6 py-2 border rounded-md text-center text-white bg-blue-400">Login</button>

@@ -1,14 +1,18 @@
 import { useState } from 'react'
+import { useToken } from '../components/TokenContext'
+
 
 const Register = () => {
+    const { register } = useToken()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPas, setConfirmPas] = useState('')
     //const [submit, setSubmit] = useState([])
 
-     const validar = (e) => {
+     const validar = async (e) => {
         //console.log(email, password, confirmPas)
         e.preventDefault() //previene el envío automático del formulario
+        
         const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/ /*Al menos un caracter antes
         del @ que no sea un espacio vacío ni un @, un @, al menos 1 caracter que no
         sea espacio vacío o un @, un . y al menos un caracter que no sea espacio vacío
@@ -39,6 +43,7 @@ const Register = () => {
         }
         /*Se ha enviado el formulario con éxito*/
         alert("¡ SEND SUCCESFULL!")
+        await register(email, password) // una vez comprobado que todo está bien, capturamos en el register el email y el password
         // vaciamos el formulario en caso de que todo esté bien
         setEmail('')
         setPassword('')
@@ -70,8 +75,8 @@ const Register = () => {
               <div className="mt-2">
                 {/*<h3>{email}</h3>*/}
                 <input
-                  onChange={(e) => setEmail(e.target.value)}
-                  value={email}
+                  onChange={(e) => setEmail(e.target.value)} // obligatorio para capturar el valor del campo y proporcionarlo al setEmail
+                  value={email} // el value tiene el valor a capturar y pasar al setEmail
                   id="email"
                   name="email"
                   type= "text" /*"email"*/
